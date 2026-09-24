@@ -1,0 +1,139 @@
+          selectRowToChange(idLineToChange);
+          
+          var  allTrBodyProducts =document.querySelectorAll('#tbodyProducts tr');
+          var firstTrBodyProduct = allTrBodyProducts[0];
+              idFirstTrProduct = firstTrBodyProduct.dataset.idproduct;
+              currentSelected[currentTable] =idFirstTrProduct;               
+
+          console.log('idFirstTrProduct',idFirstTrProduct);
+
+          var rows = Array.from(getTableRows(currentTable));
+
+          Array.from(rows).forEach(row => {
+            console.log(row.dataset.idproduct)
+          });
+
+//=====================================
+
+          var allTrBodyProducts =document.querySelectorAll('#tbodyProducts tr');
+          var rows = Array.from(allTrBodyProducts);
+          var index = rows.findIndex( row => { true })
+        
+          console.log('index :',index);
+
+//======================================
+
+const tbody = document.getElementById("tbodyProducts");
+const classes = Array.from(tbody.querySelectorAll('*'))
+                     .flatMap(el => Array.from(el.classList));
+const uniqueClasses = [...new Set(classes)];
+
+console.log(uniqueClasses);
+
+//=================================
+// Sélectionner l'élément
+const element = document.querySelector('.mon-element');
+
+// Vérifier la présence de la classe
+if (element.classList.contains('ma-classe')) {
+    console.log("La classe existe !");
+} else {
+    console.log("La classe n'existe pas.");
+}
+
+//================================
+
+array.findIndex(callback(element, index, array), thisArg)
+
+//=================================
+
+// Création du tableau des jours de la semaine
+const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
+// Recherche de l'index du jour "Mardi"
+const indexMardi = jours.findIndex(jour => jour === "Mardi");
+
+console.log(indexMardi); // Affiche : 1
+
+//=====================================
+//                         .flatMap(el => Array.from(el.classList));
+//     const uniqueClasses = [...new Set(classes)];
+//     const tbody.querySelectorAll('tr').classList.contains("bg-success")
+    console.log("classes[2]",classes[2].attributes.class);
+
+//==================================== 
+classes.forEach(element => {
+  var green = element.classList.contains("bg-success");
+  console.log("green",green);
+})
+
+//=====================================
+Comment recuperer la valeur id d'une ligne d'un tableau contenue dans tbody du tableau, tbody ayant id="tbodyProducts" en 
+utilisant 1 - tbody.querySelectorAll('#tbodyProducts tr') 2- index des lignes du tableau 3- dataset ?
+
+deepseek :
+// Récupérer toutes les lignes
+const rows = document.querySelectorAll('#tbodyProducts tr');
+
+// Parcourir les lignes et récupérer leur id
+rows.forEach(row => {
+    console.log(row.id); // Affiche l'id de chaque ligne
+});
+
+// Ou récupérer l'id d'une ligne spécifique (ex: la 3ème ligne)
+const thirdRow = document.querySelectorAll('#tbodyProducts tr')[2];
+console.log(thirdRow.id);
+
+// Récupérer tous les ids dans un tableau
+const ids = Array.from(document.querySelectorAll('#tbodyProducts tr')).map(row => row.id);
+console.log(ids);
+//=========================================
+const firstCell = document.querySelector('tr td:first-child');
+
+const allFirstCells = document.querySelectorAll('table tr td:first-child');
+
+allFirstCells.forEach(td => { console.log(td.textContent); });
+
+//=====================================================================
+
+const row = document.querySelector('tr');
+const firstCell = row.cells[0]; // Sélectionne le premier TD de la ligne
+
+//======================================================================
+
+        '<img src="/uploads/products/' + image + '" alt="' + product.name_product + '">' +
+        '<h2>' + product.name_product + '</h2>' +        
+   //     '<p class="product-price">' + product.price + '</p>' +
+   //     '<span class="product-index">' + productIndex + '</span>' +
+        '<span class="product-price">' + product.price + '</span>'  +
+        '<span class="product-index"></span>' +
+
+//=====================================================================
+                                      <td class="text text-center border border-dark fw-bold">
+                                          <button class="btn btn-success btn-sm me-1"
+                                            onclick="">
+                                            <i class="fa-solid fa-pencil"></i>
+                                          </button>
+                                      </td>
+//=========================================
+
+//
+By using html, css, php, or javascript, I wish to create a form for connexion,
+in the new page to be called :connexion.php
+to let the user to redirect to this page : http://localhost:8000/scrollTickets.php
+the user must give 3 inputs with 3 labels 1 - first_name 2 - last_name 3 - password
+the inputs are in the mySql table "users"
+Only the user giving the correct inputs can connect to scrollTickets.php .
+The security of the entered data must be ensured.
+Prevents injecting HTML characters
+Open a session with the id of the signing user if the inputs are corrects or display the errorMessages :
+1 - $errorMessage = 'Login ou mot de passe incorrects !';
+2 - $errorMessage = 'Erreur de connexion à la base de données.';
+3 - $errorMessage = 'Completer le formulaire S.V.P !'
+Ensure displaying the errors messages on bootstrap alert with red color.
+If the inputs are no corrects inputs ,a wrong or missing somme information, redirect the user for the page for
+inscription (inscription.php) and add a new user to the table "users", after that he can open a new session .
+only the admin can accept the new user, the admin has a role=1 .
+            
+
+

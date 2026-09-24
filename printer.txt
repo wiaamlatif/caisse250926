@@ -1,0 +1,52 @@
+
+|---------------------------------------------------------------------------------------------
+|                     Action                  | Code ASCII | Code Hexadécimal | Code Décimal |
+|---------------------------------------------|------------|------------------|--------------|
+| (font) Police
+| Sélectionner Font A (Standard, 12×24 dots)  |  ESC M 0   |      1B 4D 00    |   27 77 0    |
+| Sélectionner Font B (Petite, 9×17 dots)     |  ESC M 1   |      1B 4D 01    |   27 77 1    |
+| Activer le Gras (Bold ON)                   |  ESC E 1   |      1B 45 01    |   27 69 1    |
+| Désactiver le Gras (Bold OFF)               |  ESC E 0   |      1B 45 00    |   27 69 0    |
+|---------------------------------------------|------------|------------------|--------------|
+| (Size) Taille Normale (1x1)                 |  GS ! 0    |      1D 21 00    |   29 33 0    |
+| Double Hauteur uniquement (1x2)             |  GS ! 1    |      1D 21 01    |   29 33 1    |
+| Double Largeur uniquement (2x1)             |  GS ! 16   |      1D 21 10    |   29 33 16   |
+| Double Hauteur + Double Largeur (2x2)       |  GS ! 17   |      1D 21 11    |   29 33 17   |
+| Taille Maximale (8x8)                       |  GS ! 119  |      1D 21 77    |   29 33 119  |
+|---------------------------------------------|------------|------------------|--------------|
+| Aligner à Gauche (Left)                     |  ESC a 0   |      1B 61 00    |   27 97 0    |
+| Centrer le texte (Center)                   |  ESC a 1   |      1B 61 01    |   27 97 1    |
+| Aligner à Droite (Right)                    |  ESC a 2   |      1B 61 02    |   27 97 2    |
+|---------------------------------------------|------------|------------------|--------------|
+
+Conseil d'utilisation :
+
+Cette commande doit généralement être envoyée au début d'une nouvelle ligne 
+(juste après un saut de ligne \n ou \x0A) pour s'appliquer correctement au texte qui suit.
+
+1 - Note pour GS ! n : Le premier chiffre hexadécimal définit la largeur
+    (0 à 7 pour multiplier de 1 à 8 fois) et le second chiffre définit la hauteur (0 à 7).
+    Par exemple, 1D 21 33 donnera une taille 4x4.
+2 - ## Alternative globale : La commande Maître (ESC !)
+    Vous pouvez également utiliser la commande "Master Select" ESC ! n qui 
+    permet de combiner plusieurs styles 
+    (police, gras, double hauteur/largeur, souligné) en un seul octet n : [3, 5] 
+
+    * 
+    * Police A Normale : 1B 21 00
+    * Police B Petite : 1B 21 01
+    * Texte en Gras (Font A) : 1B 21 08
+    * Double Hauteur : 1B 21 10
+    * Double Largeur : 1B 21 20
+    * Gras + Double Hauteur + Double Largeur : 1B 21 38 [6, 7] 
+    * 
+3- N'oubliez pas d'envoyer la commande d'initialisation de l'imprimante ESC @ (1B 40 en hexadécimal)
+ au tout début de votre code pour réinitialiser tous les paramètres par défaut. [3, 8] 
+Dans quel langage de programmation développez-vous votre script (Python, PHP, C#, Java...) 
+ou utilisez-vous un logiciel spécifique ? Je peux vous fournir un exemple de code concret adapté
+pour envoyer ces commandes à votre POS-80.
+
+4- La commande \x1B\x61\x00 (ou ESC a 0) sert à aligner le texte à gauche sur votre imprimante
+   thermique POS-80.
+   C'est la commande standard ESC/POS pour la gestion de la justification.
+   La valeur du dernier octet détermine la position du texte sur le ticket :

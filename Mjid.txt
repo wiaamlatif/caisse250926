@@ -1,0 +1,161 @@
+javascript : comment activer par programme un key button par exemple Enter Key button ?
+
+// 1. Cibler l'élément (par exemple, un champ de saisie)
+const inputElement = document.querySelector('input');
+
+// 2. Créer l'événement pour la touche Entrée
+const enterEvent = new KeyboardEvent('keydown', {
+    key: 'Enter',
+    code: 'Enter',
+    keyCode: 13,
+    which: 13,
+    bubbles: true, // Permet à l'événement de remonter dans le DOM
+    cancelable: true
+});
+
+// 3. Déclencher l'événement sur l'élément
+inputElement.dispatchEvent(enterEvent);
+
+//============================================================
+// Soumettre le formulaire directement
+document.querySelector('form').submit();
+
+// Ou simuler le clic sur le bouton de validation
+document.querySelector('#submit-button').click();
+
+//================================================
+Javascript : lorsque qu'une ligne d'une table est selectionnee,
+lorsque j'appuie sur le bouton Enter, j"excute une fonction,
+je souhaite executée la meme fonction mais  cette fois-ci en cliquant seulement sur la meme ligne ?
+
+Javascipt : Comment exécuter la même fonction soit en appuyant sur Entrée, soit en cliquant sur la ligne d'un tableau selectionnée:
+
+//===============================================
+function addProduct(productData) {
+    const table = document.getElementById('idTable4');
+    
+    // Create row
+    const newRow = document.createElement('tr');
+    
+    // Create and append cells
+    const cell1 = document.createElement('td');
+    cell1.textContent = productData.name;
+    newRow.appendChild(cell1);
+    
+    const cell2 = document.createElement('td');
+    cell2.textContent = productData.price;
+    newRow.appendChild(cell2);
+    
+    const cell3 = document.createElement('td');
+    cell3.textContent = productData.quantity;
+    newRow.appendChild(cell3);
+    
+    const cell4 = document.createElement('td');
+    cell4.textContent = productData.category;
+    newRow.appendChild(cell4);
+    
+    // Append row to table
+    table.appendChild(newRow);
+}
+
+// Usage
+addProduct({
+    name: 'Laptop',
+    price: '$999',
+    quantity: '5',
+    category: 'Electronics'
+});
+
+//============================
+//window.location = "http://localhost:8000/index.php";
+
+//=============================
+
+                  <td class="text text-center border border-dark fw-bold">
+                      <button class="btn btn-success btn-sm me-1"
+                        onclick="ajouterTicket()">
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                  </td>  
+
+                  <td class="text text-center border border-dark">
+                    <span class="badge text-bg-dark fw-bold fs-6"></span>
+                  </td>                
+
+//==========================================
+My data are in 5 tables : 
+1-'users' 2-'tickets' 3-'lignes_ticket' 4-'categories'  5-'products'
+I have a thermal printrer the width of the paper is 80 mm
+My os is windows 10.
+
+I want to print this ticket :
+           BIG COFFEE
+    2, freedom street  CityTown
+           MyCountry
+        07.77.77.77.77
+ _______________________________
+    Name Server : GoodMan
+
+1x12 Coffee         12.00
+&x10 Mineral water  10.00
+                   -------
+                    22.00
+Friday 9 Sep. 2026
+Ticket Nr : 001245
+______________________________________________
+
+//============================================
+I have  a thermal printer width 80 mm,
+ i want to program in javascript to advance the paper one line,
+feed de paper one line ?                 
+
+//=========================================
+javascript , comment eviter affichage de la boite de dialogue lorsque
+je valide l'impression d'un ticket sur une imprimante thermique ?
+
+Pour des raisons de sécurité évidentes, il est impossible d'éviter la boîte de dialogue d'impression directement en JavaScript standard exécuté dans un navigateur Web classique. La méthode window.print() est conçue pour forcer la validation de l'utilisateur afin qu'un site web ne puisse pas vider l'encre ou le papier d'une imprimante à l'insu de la personne. [1, 2] 
+Cependant, s'agissant d'une imprimante thermique (souvent utilisée pour des applications professionnelles, de caisse ou de logistique), plusieurs solutions techniques permettent de contourner cette restriction (mode Kiosk ou Silent Printing).
+## 1. Activer le mode "Kiosk" du navigateur (Solution la plus simple)
+Si l'application tourne sur un poste dédié (caisse, tablette, ordinateur de l'entreprise), vous pouvez configurer le raccourci du navigateur pour qu'il valide automatiquement l'impression.
+
+* 
+* Sur Google Chrome / Microsoft Edge :
+1. Fermez toutes les fenêtres du navigateur.
+   2. Modifiez le raccourci de l'application et ajoutez les drapeaux (flags) suivants à la fin du champ "Cible" :
+   --kiosk --kiosk-printing
+   3. Lorsque vous appellerez window.print() en JavaScript, le ticket s'imprimera instantanément sur l'imprimante par défaut sans afficher de boîte de dialogue. [2] 
+* Sur Firefox :
+1. Tapez about:config dans la barre d'adresse.
+   2. Recherchez la préférence print.always_print_silent.
+   3. Passez sa valeur à true (créez-la en type Booléen si elle n'existe pas).
+* 
+
+## 2. Utiliser une API Web ou un protocole direct (Pour s'affranchir de window.print)
+Si vous préférez gérer l'imprimante de manière logicielle sans passer par la fonction d'impression native du navigateur :
+
+* 
+* API WebUSB ou Web Serial : Les imprimantes thermiques modernes (Epson, Star Micronics, Xprinter) supportent le langage ESC/POS. Vous pouvez envoyer directement des commandes binaires (textes, coupure du papier, ouverture du tiroir-caisse) depuis JavaScript vers le port USB ou Série, sans aucune interface intermédiaire.
+* Les SDK des constructeurs : Des marques comme Epson proposent des bibliothèques JavaScript (comme ePOS-Print SDK) permettant d'envoyer des requêtes XML/HTTP directement à l'adresse IP d'une imprimante thermique connectée au réseau local.
+* 
+
+## 3. Utiliser un agent d'impression local (Solution universelle)
+Si votre application est hébergée sur le cloud et doit imprimer sur un poste client sans configuration lourde du navigateur :
+
+* 
+* Vous pouvez installer un petit utilitaire local sur le poste (souvent développé en Node.js, Python ou C#) qui écoute un port local (ex: localhost:3000) ou utilise les WebSockets.
+* Votre application JavaScript envoie les données du ticket en JSON à ce service local via une requête fetch(), et le service se charge d'envoyer les données directement à l'imprimante Windows/Linux sans aucune intervention humaine.
+* 
+
+Pour vous orienter vers la solution la plus adaptée, pourriez-vous me préciser :
+
+* 
+* Quel navigateur utilisez-vous et s'agit-il d'un poste dont vous avez le contrôle total ?
+* Comment l'imprimante est-elle connectée (USB, Réseau/Wi-Fi, Bluetooth) ?
+* 
+
+
+[1] [https://forum.alsacreations.com](https://forum.alsacreations.com/topic-5-84574-1-Imprimer-un-document-avec-javascript.html)
+[2] [https://developer.mozilla.org](https://developer.mozilla.org/fr/docs/Web/API/Window/print)
+
+//=======================
+I want each time when I push on Insert key button, and when a current table is "lignes_ticket", the thermal paper advance one feed line .

@@ -1,0 +1,13 @@
+I have 80 products in my table products
+I m using php mySql and javascript.
+I wish to display my products in a table 
+Each cell of my table will contains a card
+In the card i display the image of product
+the name of product as title, the price and
+the index of the item
+Each cell contains only one card , I move
+in the table with keyUp, KeyDown, KeyRight
+and keyLeft, the selected card must having
+a geen color, the products are devided into 4 
+categories and must all displayed in the
+some time .

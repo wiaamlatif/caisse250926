@@ -1,0 +1,95 @@
+//====================
+
+// Select all td elements that are the first child of their parent tr
+const firstTds = document.querySelectorAll('tbody tr td:first-child');
+
+// Convert to array and extract text/content
+const firstTdContents = Array.from(firstTds).map(td => td.textContent);
+console.log(firstTdContents);
+
+//=====================
+
+// Select all td elements that are the first td of their parent tr
+const firstTds = document.querySelectorAll('tbody tr td:first-of-type');
+
+// Get their text content
+const firstTdContents = Array.from(firstTds).map(td => td.textContent);
+console.log(firstTdContents);
+
+//=============================================
+//////////////////////////////////////////////
+javascript htbody tr and the first td,
+how to extract all the first children td 
+the  querySelectorAll  is used ?
+//////////////////////////////////////////////
+//===========================================
+
+// More explicit - selects td that is a direct child of tr
+const firstTds = document.querySelectorAll('tbody tr > td:first-child');
+
+// Get their text content
+const firstTdContents = Array.from(firstTds).map(td => td.textContent);
+console.log(firstTdContents);
+
+//======================
+
+// Selects the first child element of each tr
+const firstTds = document.querySelectorAll('tbody tr td:nth-child(1)');
+
+// Get their text content
+const firstTdContents = Array.from(firstTds).map(td => td.textContent);
+console.log(firstTdContents);
+
+//=======================
+
+<table>
+  <tbody>
+    <tr>
+      <td>First row, first cell</td>
+      <td>First row, second cell</td>
+    </tr>
+    <tr>
+      <td>Second row, first cell</td>
+      <td>Second row, second cell</td>
+    </tr>
+    <tr>
+      <td>Third row, first cell</td>
+      <td>Third row, second cell</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  // Extract all first td elements
+  const firstTds = document.querySelectorAll('tbody tr td:first-child');
+  
+  // Get their text content
+  const firstTdTexts = Array.from(firstTds).map(td => td.textContent);
+  console.log(firstTdTexts); 
+  // Output: ["First row, first cell", "Second row, first cell", "Third row, first cell"]
+  
+  // If you want to get the actual td elements
+  const firstTdElements = Array.from(firstTds);
+  console.log(firstTdElements); // Array of td elements
+  
+  // If you want to get inner HTML
+  const firstTdHTML = Array.from(firstTds).map(td => td.innerHTML);
+  console.log(firstTdHTML);
+</script>
+
+//========================
+
+document.querySelectorAll('tbody tr td:first-child')
+  .forEach(td => console.log(td.textContent));
+
+//=================================
+
+      var firstTds = document.querySelectorAll("#tbodyProducts tr td:first-child")
+
+   // const firstTdContents = Array.from(firstTds).map(td => td.textContent);
+      const firstTdClasses = Array.from(firstTds).map(td => td.classList.add("bg-danger"));
+
+      console.log(firstTdClasses);
+
+      document.querySelectorAll('#tbodyProducts tr td:first-child').forEach(td => console.log(td.textContent));
+// I have a table with a tbody id="tbodyProducts" , tr and td , i want to blank a row tr ?
